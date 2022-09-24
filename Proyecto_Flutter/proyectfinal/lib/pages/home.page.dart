@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:proyectoflutter/models/mensaje.model.dart';
@@ -35,6 +37,11 @@ class _HomePageState extends State<HomePage> {
             if (snapshot.hasData) {
               snapshot.data?.forEach((element) => lista.add(CardWidget(
                     mensaje: element,
+                    callback: () {
+                      setState(() {
+                        mensaje = mensajeProvider.obtenerMensaje();
+                      });
+                    },
                   )));
               return ListView(
                 children: lista,
